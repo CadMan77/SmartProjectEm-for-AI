@@ -1,0 +1,13 @@
+<Addin Type="Standard">
+  <Assembly>SmartProjectEm.dll</Assembly>
+  <ClassId>{57965d6a-273a-4684-80e2-f46e3229d01f}</ClassId>
+  <ClientId>{57965d6a-273a-4684-80e2-f46e3229d01f}</ClientId>
+  <DisplayName>SmartProjectEm</DisplayName>
+  <Description Language="1033">Automates orthogonal projection activation for 3Dmodel's standard views for (instead) of 'Perspective' mode</Description>
+  <Description Language="1049">Автоматически активирует ортогональность на стандартных видах 3Dмодели для (вместо) проекции 'Перспективная'</Description>
+  <LoadOnStartUp>1</LoadOnStartUp>
+  <SupportedSoftwareVersionLessThan>28..</SupportedSoftwareVersionLessThan>
+	<!--DataVersion>1</DataVersion-->
+	<!--UserInterfaceVersion>1</UserInterfaceVersion-->
+	<!--UserUnloadable>1</UserUnloadable-->
+</Addin>
