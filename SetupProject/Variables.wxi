@@ -7,8 +7,8 @@
 	<!--?define MainAddinFile = "CJSC_VB" ?-->
 	<!--?define Version = "!(bind.fileVersion.$(var.MainAddinFile).dll)" ?-->
 	<!--?define UpgradeCode="92326378-28EF-4ADC-87C6-10A1A2883078"?-->
-	<?define Manufacturer="UMA (aka CADman77)"?>
-	<!--?define licenseRtf="!(loc.LicenseText)"?-->
+	<!--<?define Manufacturer="UMA (aka CADman77)"?>-->
+	<!--<?define licenseRtf="!(loc.LicenseText)"?>-->
 	<!--?define ProductCode="???"?-->
 
 </Include>

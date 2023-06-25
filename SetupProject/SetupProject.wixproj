@@ -20,15 +20,19 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Addin-Files%28Auto%29.wxs" />
+    <Compile Include="ExitDialog_SmartProjectEm.wxs" />
+    <Compile Include="LicenseAgreementDlg_SmartProjectEm.wxs" />
     <Compile Include="Product.wxs" />
+    <Compile Include="WixUI_FeatureTree_SmartProjectEm.wxs" />
+    <Compile Include="WixUI_Minimal_SmartProjectEm.wxs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="en-US.wxl" />
     <EmbeddedResource Include="ru-RU.wxl" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="EULA-ENU.rtf" />
-    <Content Include="EULA-RUS.rtf" />
+    <Content Include="SmartProjectEm-EULA-ENU.rtf" />
+    <Content Include="SmartProjectEm-EULA-RUS.rtf" />
     <Content Include="SmartProjectEm-Icon.ico" />
     <Content Include="Variables.wxi" />
   </ItemGroup>

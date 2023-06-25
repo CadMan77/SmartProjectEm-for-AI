@@ -8,8 +8,7 @@
 	<String Id ="SummaryCodepage">1251</String>
 	<String Id ="ProductName">Надстройка 'SmartProjectEm' для Autodesk Inventor 2023-</String>
 	<String Id ="ARP_COMMENTS">Надстройка для Autodesk Inventor</String>
-	<!--String Id ="MainFtrDescr">Обязательные файлы (манифест, динамические библиотеки и файлы справки)</String-->
-	<!--String Id ="OptFtrDescr">Дополнительные файлы (3D-модели примеры)</String-->
-	<!--String Id ="InvLaunchOpt"><![CDATA[&Запустить]]> Autodesk Inventor</String-->
-	<!--String Id ="LicenseRtf" Overridable="yes">EULA-RUS.rtf</String-->
+	<String Id ="InvLaunchOpt"><![CDATA[&Запустить]]> Autodesk Inventor</String>
+	<String Id ="LicenseRtf">SmartProjectEm-EULA-RUS.rtf</String>
+	<String Id ="InvIsRunningMSG">Обнаружен активный процесс Inventor.exe! Настоятельно рекомендуется завершать сеанс головного приложения перед установкой надстроек/расширений для него. ПРИМЕЧАНИЕ: Autodesk Inventor не поддерживает установку надстроек "на ходу" (функционал новой надстройки не будет доступен в текущей сессии).</String>
 </WixLocalization>

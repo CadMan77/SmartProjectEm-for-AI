@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<WixLocalization 
-	Culture="en-US" 
+<WixLocalization
+	Culture="en-US"
 	Codepage="1252"
 	xmlns= "http://schemas.microsoft.com/wix/2006/localization">
 
@@ -8,8 +8,7 @@
 	<String Id ="SummaryCodepage">1252</String>
 	<String Id ="ProductName">'SmartProjectEm' Add-In for Autodesk Inventor 2023-</String>
 	<String Id ="ARP_COMMENTS">Add-In for Autodesk Inventor</String>
-	<!--String Id ="MainFtrDescr">Main files (manifest, dynamic libraries and help files)</String-->
-	<!--String Id ="OptFtrDescr">Optional files (sample 3D-models)</String-->
-	<!--String Id ="InvLaunchOpt"><![CDATA[&Launch]]> Autodesk Inventor</String-->
-	<!--String Id ="LicenseRtf" Overridable="yes">EULA-ENU.rtf</String-->
+	<String Id ="InvLaunchOpt"><![CDATA[&Launch]]> Autodesk Inventor</String>
+	<String Id ="LicenseRtf">SmartProjectEm-EULA-ENU.rtf</String>
+	<String Id ="InvIsRunningMSG">There is Inventor.exe process running! It is highly recommended to close current session of the main application before installing Add-Ins/Extensions for it. NOTE: Autodesk Inventor does not support On-The-Go Add-In installation (new Add-In features won't be available within current AI session).</String>
 </WixLocalization>

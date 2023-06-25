@@ -8,9 +8,10 @@
 			 Name="!(loc.ProductName)" 
 			 Language="!(loc.LocaleId)" 
 			 Codepage="1252" 
-			 Manufacturer="$(var.Manufacturer)" 
 			 Version="$(var.ProductVersion)" 
+			 Manufacturer="UMA (aka CADman77)"
 			 UpgradeCode="4E6D142F-17CB-4E9E-B06E-064F1B526049">
+			 <!--Manufacturer="$(var.Manufacturer)"--> 
 
 		<Package Compressed="yes" 
 				 Description="!(loc.ProductName)" 
@@ -57,14 +58,14 @@
 				<![CDATA[Installed OR ADSKINV]]>
 		</Condition>
 
-		<!--<Property Id="ADSKINVEXEPATH" Secure="yes">
+		<Property Id="ADSKINVEXEPATH" Secure="yes">
 			<RegistrySearch Id="RS_AdskInvExePath"
 							Root="HKCU"
 							Key="Software\Autodesk\Inventor\Current Version"
 							Name="Executable"
 							Type="raw"
 							Win64="yes"/>
-		</Property>-->
+		</Property>
 
 		<!--<Property Id="ADSKINV2" Secure="yes">
 			<RegistrySearch Id="RS_AdskInv2"
@@ -75,10 +76,15 @@
 							Win64="yes"/>
 		</Property>-->
 
-		<!--<WixVariable Id="WixUILicenseRtf" Value="EULA_RUS.rtf" />-->
+		<!--<WixVariable Id="WixUILicenseRtf" Value="!(loc.LicenseRtf)" />-->
 		
 		<UI>
-			<UIRef Id="WixUI_Minimal"/>
+			<!--<UIRef Id="WixUI_Minimal"/>-->
+			<!--<UIRef Id="WixUI_Minimal_SmartProjectEm"/>-->
+			<!--<UIRef Id="WixUI_FeatureTree"/>-->
+			<UIRef Id="WixUI_FeatureTree_SmartProjectEm"/>
+			<Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOXTEXT" Value="!(loc.InvLaunchOpt)" />
+			<Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOX" Value="1" />
 		</UI>
 		
 		
@@ -88,11 +94,23 @@
 				<!-- TODO: Insert files, registry keys, and other resources here. -->
 			<!-- </Component> -->
 		</ComponentGroup>
+		<Property Id="ARPCOMMENTS" Value="!(loc.ARP_COMMENTS)" />
+		<Property Id="ARPCONTACT" Value="CADman77@yandex.ru" />
+		<Property Id="ARPINSTALLLOCATION" Value="%ProgramData%\Autodesk\Inventor Addins\SmartProjectEm\" />
+		<Property Id="ARPPRODUCTICON" Value="AddInIcon" />
+		<Icon Id="AddInIcon" SourceFile=".\SmartProjectEm-Icon.ico" />
 
-	<Property Id="ARPCOMMENTS" Value="!(loc.ARP_COMMENTS)" />
-	<Property Id="ARPCONTACT" Value="CADman77@yandex.ru" />
-	<Property Id="ARPINSTALLLOCATION" Value="%ProgramData%\Autodesk\Inventor Addins\SmartProjectEm\" />
-	<Property Id="ARPPRODUCTICON" Value="AddInIcon" />
-	<Icon Id="AddInIcon" SourceFile=".\SmartProjectEm-Icon.ico" />
+		<WixVariable Id="WixUIBannerBmp" Value=".\SmartProjectEm-Setup-Banner.bmp" />
+
+		<util:CloseApplication Id="CloseInventorExe"
+					   PromptToContinue="yes"
+					   Target="inventor.exe"
+					   RebootPrompt="no"
+					   Description="!(loc.InvIsRunningMSG)"/>
+					   <!--Description="Inventor.exe process is running! Closing target application before install any Add-In/Extension for it is considered best practice. NOTE: Autodesk Inventor does not support On-The-Go Add-In installation (new Add-In features won't be available within current AI session)."/>-->
+
+		<Property Id="WixShellExecTarget" Value="[ADSKINVEXEPATH]" />		
+		
+		<CustomAction Id="LaunchApplication" BinaryKey="WixCA" DllEntry="WixShellExec" Impersonate="yes" />
 	</Product>
 </Wix>
