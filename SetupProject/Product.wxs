@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" 
+	xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
+	<?include Variables.wxi?>
+	
+	<Product Id="*" 
+			 Name="!(loc.ProductName)" 
+			 Language="!(loc.LocaleId)" 
+			 Codepage="1252" 
+			 Manufacturer="$(var.Manufacturer)" 
+			 Version="$(var.ProductVersion)" 
+			 UpgradeCode="4E6D142F-17CB-4E9E-B06E-064F1B526049">
+
+		<Package Compressed="yes" 
+				 Description="!(loc.ProductName)" 
+				 InstallerVersion="200" 
+				 InstallScope="perMachine" 
+				 Languages="!(loc.LocaleId)"
+				 Platform="x64" 
+				 SummaryCodepage="!(loc.SummaryCodepage)" 
+				 Keywords="$(var.ProductVersion)"/>
+
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+
+		<Media Id="1" Cabinet="media1.cab" EmbedCab="yes" />
+
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="CommonAppDataFolder">
+				<Directory Id="Adsk_Folder" Name="Autodesk">
+					<Directory Id="AI_Addins_Folder" Name="Inventor Addins">
+						<Directory Id="ADDIN_INSTALL_DIR" Name="SmartProjectEm" />
+					</Directory>
+				</Directory>
+			</Directory>
+		</Directory>
+
+		<Feature Id="MainFeature"
+				 Title="SmartProjectEm Add-In"
+				 Level="1"
+				 Absent="disallow"
+				 AllowAdvertise="no">
+			<ComponentGroupRef Id="CG_AddInFiles"/>
+		</Feature>
+		<!--Description="!(loc.MainFtrDescr)"-->
+
+		<Property Id="ADSKINV" Secure="yes">
+			<RegistrySearch Id="RS_AdskInv"
+							Root="HKCU"
+							Key="Software\Autodesk\Inventor\Current Version"
+							Name="Registered"
+							Type="raw" 
+							Win64="yes"/>
+		</Property>
+
+		<Condition Message="This application requires Autodesk Inventor. Please install the Autodesk Inventor then run this installer again.">
+				<![CDATA[Installed OR ADSKINV]]>
+		</Condition>
+
+		<!--<Property Id="ADSKINVEXEPATH" Secure="yes">
+			<RegistrySearch Id="RS_AdskInvExePath"
+							Root="HKCU"
+							Key="Software\Autodesk\Inventor\Current Version"
+							Name="Executable"
+							Type="raw"
+							Win64="yes"/>
+		</Property>-->
+
+		<!--<Property Id="ADSKINV2" Secure="yes">
+			<RegistrySearch Id="RS_AdskInv2"
+							Root="HKCU"
+							Key="Software\Autodesk\Inventor\Current Version"
+							Name="LastVersionRun"
+							Type="raw" 
+							Win64="yes"/>
+		</Property>-->
+
+		<!--<WixVariable Id="WixUILicenseRtf" Value="EULA_RUS.rtf" />-->
+		
+		<UI>
+			<UIRef Id="WixUI_Minimal"/>
+		</UI>
+		
+		
+		<ComponentGroup Id="ProductComponents" Directory="ADDIN_INSTALL_DIR">
+			<!-- TODO: Remove the comments around this Component element and the ComponentRef below in order to add resources to this installer. -->
+			<!-- <Component Id="ProductComponent"> -->
+				<!-- TODO: Insert files, registry keys, and other resources here. -->
+			<!-- </Component> -->
+		</ComponentGroup>
+
+	<Property Id="ARPCOMMENTS" Value="!(loc.ARP_COMMENTS)" />
+	<Property Id="ARPCONTACT" Value="CADman77@yandex.ru" />
+	<Property Id="ARPINSTALLLOCATION" Value="%ProgramData%\Autodesk\Inventor Addins\SmartProjectEm\" />
+	<Property Id="ARPPRODUCTICON" Value="AddInIcon" />
+	<Icon Id="AddInIcon" SourceFile=".\SmartProjectEm-Icon.ico" />
+	</Product>
+</Wix>
