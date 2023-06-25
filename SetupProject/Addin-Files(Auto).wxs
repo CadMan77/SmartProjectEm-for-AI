@@ -2,10 +2,10 @@
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
     <Fragment>
         <DirectoryRef Id="ADDIN_INSTALL_DIR">
-            <Component Id="Autodesk.SmartProjectEm.Inventor.addin" Guid="{9669EFFE-000F-4B52-9235-70114471A9FB}">
+            <Component Id="Autodesk.SmartProjectEm.Inventor.addin" Guid="{693C5E73-2430-4D8A-AB93-2C0FA0F9B711}">
                 <File Id="Autodesk.SmartProjectEm.Inventor.addin" KeyPath="yes" Source="$(var.SmartProjectEm.TargetDir)\Autodesk.SmartProjectEm.Inventor.addin" />
             </Component>
-            <Component Id="SmartProjectEm.dll" Guid="{AA431CB6-FAEA-4783-A24B-5CC17D8C26BE}">
+            <Component Id="SmartProjectEm.dll" Guid="{110EB5A2-19D1-443A-AE2E-C2038A415AF9}">
                 <File Id="SmartProjectEm.dll" KeyPath="yes" Source="$(var.SmartProjectEm.TargetDir)\SmartProjectEm.dll" />
             </Component>
         </DirectoryRef>
