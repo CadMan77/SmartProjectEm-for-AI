@@ -4,11 +4,12 @@
 	Codepage="1251"
 	xmlns= "http://schemas.microsoft.com/wix/2006/localization">
 
-	<String Id ="LocaleId">1049</String>
-	<String Id ="SummaryCodepage">1251</String>
-	<String Id ="ProductName">Надстройка 'SmartProjectEm' для Autodesk Inventor 2023-</String>
+	<String Id ="AboutFileName">About-SmartProjectEm-RUS.pdf</String>
 	<String Id ="ARP_COMMENTS">Надстройка для Autodesk Inventor</String>
+	<String Id ="InvIsRunningMSG">Обнаружен активный процесс Inventor.exe! Настоятельно рекомендуется завершать сеанс головного приложения перед установкой надстроек/расширений для него. ПРИМЕЧАНИЕ: Autodesk Inventor не поддерживает установку надстроек "на ходу" (функционал новой надстройки не будет доступен в текущей сессии).</String>
 	<String Id ="InvLaunchOpt"><![CDATA[&Запустить]]> Autodesk Inventor</String>
 	<String Id ="LicenseRtf">SmartProjectEm-EULA-RUS.rtf</String>
-	<String Id ="InvIsRunningMSG">Обнаружен активный процесс Inventor.exe! Настоятельно рекомендуется завершать сеанс головного приложения перед установкой надстроек/расширений для него. ПРИМЕЧАНИЕ: Autodesk Inventor не поддерживает установку надстроек "на ходу" (функционал новой надстройки не будет доступен в текущей сессии).</String>
+	<String Id ="LocaleId">1049</String>
+	<String Id ="ProductName">Надстройка 'SmartProjectEm' для Autodesk Inventor 2023-</String>
+	<String Id ="SummaryCodepage">1251</String>
 </WixLocalization>

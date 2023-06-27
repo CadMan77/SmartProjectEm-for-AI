@@ -27,6 +27,7 @@
 		<Media Id="1" Cabinet="media1.cab" EmbedCab="yes" />
 
 		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="TempTest" FileSource="[TempFolder]" />
 			<Directory Id="CommonAppDataFolder">
 				<Directory Id="Adsk_Folder" Name="Autodesk">
 					<Directory Id="AI_Addins_Folder" Name="Inventor Addins">
@@ -43,6 +44,14 @@
 				 AllowAdvertise="no">
 			<ComponentGroupRef Id="CG_AddInFiles"/>
 		</Feature>
+
+		<!--<Feature Id="AboutFiles"
+				 Title="About Add-In Files"
+				 Level="1"
+				 Absent="disallow"
+				 AllowAdvertise="no">
+			<ComponentGroupRef Id="CG_AboutFiles"/>
+		</Feature>-->
 		<!--Description="!(loc.MainFtrDescr)"-->
 
 		<Property Id="ADSKINV" Secure="yes">
@@ -98,6 +107,8 @@
 		<Property Id="ARPCONTACT" Value="CADman77@yandex.ru" />
 		<Property Id="ARPINSTALLLOCATION" Value="%ProgramData%\Autodesk\Inventor Addins\SmartProjectEm\" />
 		<Property Id="ARPPRODUCTICON" Value="AddInIcon" />
+		<!--<Property Id="ARPREADME" Value="%ProgramData%\Autodesk\Inventor Addins\SmartProjectEm\About-SmartProjectEm-RUS.pdf" />-->
+		<Property Id="ARPREADME" Value="%ProgramData%\Autodesk\Inventor Addins\SmartProjectEm\!(loc.AboutFileName)" />
 		<Icon Id="AddInIcon" SourceFile=".\SmartProjectEm-Icon.ico" />
 
 		<WixVariable Id="WixUIBannerBmp" Value=".\SmartProjectEm-Setup-Banner.bmp" />
@@ -109,8 +120,9 @@
 					   Description="!(loc.InvIsRunningMSG)"/>
 					   <!--Description="Inventor.exe process is running! Closing target application before install any Add-In/Extension for it is considered best practice. NOTE: Autodesk Inventor does not support On-The-Go Add-In installation (new Add-In features won't be available within current AI session)."/>-->
 
-		<Property Id="WixShellExecTarget" Value="[ADSKINVEXEPATH]" />		
-		
+		<Property Id="WixShellExecTarget" Value="[ADSKINVEXEPATH]" />
+
+		<CustomAction Id="ActivationUtility" Directory="TempTest" ExeCommand="About-CJSC_ENU.pdf" Execute="immediate" Return="check" />
 		<CustomAction Id="LaunchApplication" BinaryKey="WixCA" DllEntry="WixShellExec" Impersonate="yes" />
 	</Product>
 </Wix>
