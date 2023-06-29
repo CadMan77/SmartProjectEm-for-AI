@@ -21,10 +21,10 @@
   <ItemGroup>
     <Compile Include="Addin-Files%28Auto%29.wxs" />
     <Compile Include="ExitDialog_SmartProjectEm.wxs" />
-    <Compile Include="LicenseAgreementDlg_SmartProjectEm.wxs" />
+    <Compile Include="EulaDialog_SmartProjectEm.wxs" />
     <Compile Include="Product.wxs" />
+    <Compile Include="WelcomeDlg_SmartProjectEm.wxs" />
     <Compile Include="WixUI_FeatureTree_SmartProjectEm.wxs" />
-    <Compile Include="WixUI_Minimal_SmartProjectEm.wxs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="en-US.wxl" />
@@ -37,16 +37,6 @@
     <Content Include="Variables.wxi" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SmartProjectEm\SmartProjectEm.csproj">
-      <Name>SmartProjectEm</Name>
-      <Project>{3dc284ce-6572-439d-ada3-e703ff8498b6}</Project>
-      <Private>True</Private>
-      <DoNotHarvest>True</DoNotHarvest>
-      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
-      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <WixExtension Include="WixUtilExtension">
       <HintPath>$(WixExtDir)\WixUtilExtension.dll</HintPath>
       <Name>WixUtilExtension</Name>
@@ -56,15 +46,25 @@
       <Name>WixUIExtension</Name>
     </WixExtension>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\InvAddIn-Project\SmartProjectEm.csproj">
+      <Name>SmartProjectEm</Name>
+      <Project>{3dc284ce-6572-439d-ada3-e703ff8498b6}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(WixTargetsPath)" Condition=" '$(WixTargetsPath)' != '' " />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets" Condition=" '$(WixTargetsPath)' == '' AND Exists('$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets') " />
   <Target Name="EnsureWixToolsetInstalled" Condition=" '$(WixTargetsImported)' != 'true' ">
     <Error Text="The WiX Toolset v3.11 build tools must be installed to build this project. To download the WiX Toolset, see https://wixtoolset.org/releases/v3.11/stable" />
   </Target>
   <PropertyGroup>
-    <PostBuildEvent>"%25WiX%25bin\torch.exe" -t language "$(SolutionDir)SetupProject\bin\Release\en-US\SmartProjectEm.msi" "$(SolutionDir)SetupProject\bin\Release\ru-RU\SmartProjectEm.msi" -out "$(SolutionDir)SetupProject\bin\Release\ru-ru.mst" 
-Copy "$(SolutionDir)SetupProject\bin\Release\en-us\SmartProjectEm.msi" "$(SolutionDir)" 
-"C:\Program Files (x86)\Windows Kits\10\bin\10.0.22000.0\x64\WiSubStg.vbs" "$(SolutionDir)SmartProjectEm.msi" "$(SolutionDir)SetupProject\bin\Release\ru-ru.mst" 1049
+    <PostBuildEvent>"%25WiX%25bin\torch.exe" -t language "$(SolutionDir)Setup-Project\bin\Release\en-US\SmartProjectEm.msi" "$(SolutionDir)Setup-Project\bin\Release\ru-RU\SmartProjectEm.msi" -out "$(SolutionDir)Setup-Project\bin\Release\ru-ru.mst" 
+Copy "$(SolutionDir)Setup-Project\bin\Release\en-us\SmartProjectEm.msi" "$(SolutionDir)" 
+"C:\Program Files (x86)\Windows Kits\10\bin\10.0.22000.0\x64\WiSubStg.vbs" "$(SolutionDir)SmartProjectEm.msi" "$(SolutionDir)Setup-Project\bin\Release\ru-ru.mst" 1049
 "C:\Program Files (x86)\Windows Kits\10\bin\10.0.22000.0\x64\WiLangId.vbs" "$(SolutionDir)SmartProjectEm.msi" Package 1033,1049</PostBuildEvent>
   </PropertyGroup>
   <!--
