@@ -33,8 +33,7 @@
                     <Publish Event="SpawnDialog" Value="CancelDlg">1</Publish>
                 </Control>
                 <Control Id="LicenseText" Type="ScrollableText" X="20" Y="60" Width="330" Height="140" Sunken="yes" TabSkip="no">
-                    <!--<Text SourceFile="!(wix.WixUILicenseRtf=$(var.licenseRtf))" />-->
-                    <Text SourceFile="!(loc.LicenseRtf)" />
+                    <Text SourceFile="!(loc.LicenseRTF)" />
                 </Control>
             </Dialog>
         </UI>

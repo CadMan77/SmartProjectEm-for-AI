@@ -11,7 +11,8 @@
 
 				<!--Control Id="Back" Type="PushButton" X="180" Y="243" Width="56" Height="17" Text="!(loc.WixUIBack)" /--><!--Disabled="yes"-->
 				<Control Id="Finish" Type="PushButton" X="236" Y="243" Width="56" Height="17" Text="!(loc.WixUIFinish)" Default="yes"><!--Cancel="no"-->
-					<Publish Event="DoAction" Value="LaunchApplication">WIXUI_EXITDIALOGOPTIONALCHECKBOX = 1</Publish>
+					<Publish Event="DoAction" Value="SetOpenFilePath_InvApp">WIXUI_EXITDIALOGOPTIONALCHECKBOX = 1</Publish>
+					<Publish Event="DoAction" Value="LaunchInvApp">WIXUI_EXITDIALOGOPTIONALCHECKBOX = 1</Publish>
 				</Control>
 				<!--Control Id="Cancel" Type="PushButton" X="304" Y="243" Width="56" Height="17"  Text="!(loc.WixUICancel)"/--><!--Disabled="yes"-->
 

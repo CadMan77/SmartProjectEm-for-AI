@@ -86,8 +86,6 @@
 							Type="raw" 
 							Win64="yes"/>
 		</Property>-->
-
-		<!--<WixVariable Id="WixUILicenseRtf" Value="!(loc.LicenseRtf)" />-->
 		
 		<UI>
 			<!--<UIRef Id="WixUI_Minimal"/>-->
@@ -110,7 +108,7 @@
 		<Property Id="ARPINSTALLLOCATION" Value="%ProgramData%\Autodesk\Inventor Addins\SmartProjectEm\" />
 		<Property Id="ARPPRODUCTICON" Value="AddInIcon" />
 		<!--<Property Id="ARPREADME" Value="%ProgramData%\Autodesk\Inventor Addins\SmartProjectEm\About-SmartProjectEm-RUS.pdf" />-->
-		<Property Id="ARPREADME" Value="%ProgramData%\Autodesk\Inventor Addins\SmartProjectEm\!(loc.AboutFileName)" />
+		<Property Id="ARPREADME" Value="%ProgramData%\Autodesk\Inventor Addins\SmartProjectEm\!(loc.AboutPDF)" />
 		<Icon Id="AddInIcon" SourceFile=".\SmartProjectEm-Icon.ico" />
 
 		<WixVariable Id="WixUIBannerBmp" Value=".\SmartProjectEm-Setup-Banner.bmp" />
@@ -120,13 +118,24 @@
 					   Target="inventor.exe"
 					   RebootPrompt="no"
 					   Description="!(loc.InvIsRunningMSG)"/>
-					   <!--Description="Inventor.exe process is running! Closing target application before install any Add-In/Extension for it is considered best practice. NOTE: Autodesk Inventor does not support On-The-Go Add-In installation (new Add-In features won't be available within current AI session)."/>-->
 
-		<Property Id="WixShellExecTarget" Value="[ADSKINVEXEPATH]" />
-		<!--<CustomAction Id="SetBinaryWrite_TargetFileName_1" Property="BINARYWRITE_TARGETFILENAME" Value="[TempFolder]ActivationUtility.exe" />-->
-		<!--<CustomAction Id="SetBinaryWrite_TargetFileName_1" Property="BINARYWRITE_TARGETFILENAME" Value="[TempFolder]SmartProjectEm\About-CJSC_ENU.pdf" />-->
+		<!--???-->
+		
+		<!--<Property Id="WixShellExecTarget" Value="C:\_Freelance\My-AI-AddIns\SmartProjectEm\Setup-Project\!(loc.AboutRTF)" />-->
+		<!--<Property Id="WixShellExecTarget" Value="C:\_Freelance\My-AI-AddIns\SmartProjectEm\AboutFiles\!(loc.AboutPDF)" />-->
 
-		<!--<CustomAction Id="ActivationUtility" Directory="UserTempDir" ExeCommand="About-CJSC_ENU.pdf" Execute="immediate" Return="check" />-->
-		<CustomAction Id="LaunchApplication" BinaryKey="WixCA" DllEntry="WixShellExec" Impersonate="yes" />
+		
+		<CustomAction Id="SetOpenFilePath_AboutPDF" Property="WixShellExecTarget" Value="C:\_Freelance\My-AI-AddIns\SmartProjectEm\InvAddIn-Project\!(loc.AboutPDF)" />
+		<CustomAction Id="OpenAboutFile" BinaryKey="WixCA" DllEntry="WixShellExec" Impersonate="yes" />
+	
+		
+		<!--<CustomAction Id="SetBinaryWrite_TargetFileName_1" Property="BINARYWRITE_TARGETFILENAME" Value="[TempFolder]About-SmartProjectEm-ENU.pdf" />-->
+
+
+
+		
+		<CustomAction Id="SetOpenFilePath_InvApp" Property="WixShellExecTarget" Value="[ADSKINVEXEPATH]" />
+		<CustomAction Id="LaunchInvApp" BinaryKey="WixCA" DllEntry="WixShellExec" Impersonate="yes" />
+
 	</Product>
 </Wix>

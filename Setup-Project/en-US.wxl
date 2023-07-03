@@ -4,11 +4,13 @@
 	Codepage="1252"
 	xmlns= "http://schemas.microsoft.com/wix/2006/localization">
 
-	<String Id ="AboutFileName">About-SmartProjectEm-ENU.pdf</String>
+	<String Id ="AboutPDF">About-SmartProjectEm-ENU.pdf</String>
+	<String Id ="AboutRTF">About-SmartProjectEm-ENU.rtf</String>
 	<String Id ="ARP_COMMENTS">Add-In for Autodesk Inventor</String>
 	<String Id ="InvIsRunningMSG">There is Inventor.exe process running! It is highly recommended to close current session of the main application before installing Add-Ins/Extensions for it. NOTE: Autodesk Inventor does not support On-The-Go Add-In installation (new Add-In features won't be available within current AI session).</String>
 	<String Id ="InvLaunchOpt"><![CDATA[&Launch]]> Autodesk Inventor</String>
-	<String Id ="LicenseRtf">SmartProjectEm-EULA-ENU.rtf</String>
+	<String Id ="LicenseRTF">EULA-SmartProjectEm-ENU.rtf</String>
+	<!--<String Id ="LicenseRTF">About-SmartProjectEm-ENU.rtf</String>-->
 	<String Id ="LocaleId">1033</String>
 	<String Id ="ProductName">'SmartProjectEm' Add-In for Autodesk Inventor 2023-</String>
 	<String Id ="SummaryCodepage">1252</String>
