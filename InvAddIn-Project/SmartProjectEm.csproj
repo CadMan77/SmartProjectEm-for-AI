@@ -119,9 +119,9 @@ REM         mt.exe -manifest "$(ProjectDir)SmartProjectEm.X.manifest" -outputres
 REM 			XCopy "$(TargetPath)" "%25AppData%25\Autodesk\ApplicationPlugins\$(TargetName)\" /Y /R
 REM 		    XCopy "$(ProjectDir)Autodesk.SmartProjectEm.Inventor.addin" "%25AppData%25\Autodesk\ApplicationPlugins\$(TargetName)\" /Y /R
 
-"%25WiX%25bin\heat.exe" dir "$(ProjectDir)bin\Release" -sfrag -dr "ADDIN_INSTALL_DIR" -srd -cg "CG_AddInFiles" -gg -suid -sreg -var var.SmartProjectEm.TargetDir -out "$(SolutionDir)Setup-Project\Addin-Files(Auto).wxs"
+"%25WiX%25bin\heat.exe" dir "$(ProjectDir)bin\Release" -sfrag -dr "INSTALLDIR" -srd -cg "CG_AddInFiles" -gg -suid -sreg -var var.SmartProjectEm.TargetDir -out "$(SolutionDir)Setup-Project\Addin-Files(Auto).wxs"
 
-REM "%25WiX%25bin\heat.exe" dir "$(SolutionDir)AboutFiles" -sfrag -dr "ADDIN_INSTALL_DIR" -srd -cg "CG_AboutFiles" -gg -suid -sreg -var var.SmartProjectEm.TargetDir -t $(SolutionDir)Setup-Project\PDFonly.xsl -out "$(SolutionDir)SetupProject\About-Files(Auto).wxs"
+REM "%25WiX%25bin\heat.exe" dir "$(SolutionDir)AboutFiles" -sfrag -dr "INSTALLDIR" -srd -cg "CG_AboutFiles" -gg -suid -sreg -var var.SmartProjectEm.TargetDir -t $(SolutionDir)Setup-Project\PDFonly.xsl -out "$(SolutionDir)SetupProject\About-Files(Auto).wxs"
 	</PostBuildEvent>
   </PropertyGroup>
 </Project>

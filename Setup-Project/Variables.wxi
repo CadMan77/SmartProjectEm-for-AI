@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Include>
 
-	<?define ProductVersion = "!(bind.fileVersion.SmartProjectEm.dll)" ?>
 	<!--<?define ProductVersion="1.0.0.0"?>-->
-	<!--?define ProductVersion="!(bind.assemblyVersion.CJSC_VB)"?-->
+	<?define ProductVersion = "!(bind.fileVersion.SmartProjectEm.dll)" ?>
+	<!--?define ProductVersion="!(bind.assemblyVersion.SmartProjectEm)"?-->
+
 	<!--?define MainAddinFile = "CJSC_VB" ?-->
 	<!--?define Version = "!(bind.fileVersion.$(var.MainAddinFile).dll)" ?-->
+
 	<!--?define UpgradeCode="92326378-28EF-4ADC-87C6-10A1A2883078"?-->
-	<!--<?define Manufacturer="UMA (aka CADman77)"?>-->
 	<!--?define ProductCode="???"?-->
 
 </Include>

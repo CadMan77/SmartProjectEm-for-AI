@@ -8,10 +8,9 @@
 			 Name="!(loc.ProductName)" 
 			 Language="!(loc.LocaleId)" 
 			 Codepage="1252" 
-			 Version="$(var.ProductVersion)" 
+			 Version="$(var.ProductVersion)"
 			 Manufacturer="UMA (aka CADman77)"
 			 UpgradeCode="4E6D142F-17CB-4E9E-B06E-064F1B526049">
-			 <!--Manufacturer="$(var.Manufacturer)"--> 
 
 		<Package Compressed="yes" 
 				 Description="!(loc.ProductName)" 
@@ -27,13 +26,11 @@
 		<Media Id="1" Cabinet="media1.cab" EmbedCab="yes" />
 
 		<Directory Id="TARGETDIR" Name="SourceDir">
-			<!--<Directory Id="UserTempDir" FileSource="[TempFolder]" >
-				<Directory Id="TempAboutFilesDir" Name="SmartProjectEm" />
-			</Directory>-->
 			<Directory Id="CommonAppDataFolder">
 				<Directory Id="Adsk_Folder" Name="Autodesk">
 					<Directory Id="AI_Addins_Folder" Name="Inventor Addins">
-						<Directory Id="ADDIN_INSTALL_DIR" Name="SmartProjectEm" />
+						<Directory Id="INSTALLDIR" Name="SmartProjectEm" />
+						<!--<Directory Id="ADDIN_INSTALL_DIR" Name="SmartProjectEm" />-->
 					</Directory>
 				</Directory>
 			</Directory>
@@ -96,19 +93,27 @@
 			<Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOX" Value="1" />
 		</UI>
 		
-		
-		<ComponentGroup Id="ProductComponents" Directory="ADDIN_INSTALL_DIR">
+		<ComponentGroup Id="ProductComponents" Directory="INSTALLDIR">
+			<!--ComponentGroup Id="ProductComponents" Directory="ADDIN_INSTALL_DIR"-->
 			<!-- TODO: Remove the comments around this Component element and the ComponentRef below in order to add resources to this installer. -->
 			<!-- <Component Id="ProductComponent"> -->
 				<!-- TODO: Insert files, registry keys, and other resources here. -->
 			<!-- </Component> -->
 		</ComponentGroup>
+
 		<Property Id="ARPCOMMENTS" Value="!(loc.ARP_COMMENTS)" />
+
 		<Property Id="ARPCONTACT" Value="CADman77@yandex.ru" />
-		<Property Id="ARPINSTALLLOCATION" Value="%ProgramData%\Autodesk\Inventor Addins\SmartProjectEm\" />
-		<Property Id="ARPPRODUCTICON" Value="AddInIcon" />
+
+		<!--Property Id="ARPINSTALLLOCATION" Value="%ProgramData%\Autodesk\Inventor Addins\SmartProjectEm\" /-->
+		<SetProperty Id="ARPINSTALLLOCATION" Value="[INSTALLDIR]" After="CostFinalize" />	
+		
 		<!--<Property Id="ARPREADME" Value="%ProgramData%\Autodesk\Inventor Addins\SmartProjectEm\About-SmartProjectEm-RUS.pdf" />-->
-		<Property Id="ARPREADME" Value="%ProgramData%\Autodesk\Inventor Addins\SmartProjectEm\!(loc.AboutPDF)" />
+		<!--Property Id="ARPREADME" Value="%ProgramData%\Autodesk\Inventor Addins\SmartProjectEm\!(loc.AboutPDF)" /-->
+		<SetProperty Id="ARPREADME" Value="[INSTALLDIR]\!(loc.AboutPDF)" After="CostFinalize" />
+
+		
+		<Property Id="ARPPRODUCTICON" Value="AddInIcon" />
 		<Icon Id="AddInIcon" SourceFile=".\SmartProjectEm-Icon.ico" />
 
 		<WixVariable Id="WixUIBannerBmp" Value=".\SmartProjectEm-Setup-Banner.bmp" />
@@ -119,23 +124,35 @@
 					   RebootPrompt="no"
 					   Description="!(loc.InvIsRunningMSG)"/>
 
-		<!--???-->
+		
+		<CustomAction Id="SetCmdLine_LaunchInvApp" Property="WixShellExecTarget" Value="[ADSKINVEXEPATH]" />
+		<CustomAction Id="LaunchInvApp" BinaryKey="WixCA" DllEntry="WixShellExec" Impersonate="yes" />
+
+
+		<!--CustomAction Id="SetCmdLine_OpenAboutPDF" Property="WixShellExecTarget" Value="C:\_Freelance\My-AI-AddIns\SmartProjectEm\InvAddIn-Project\!(loc.AboutPDF)" /-->
+		<CustomAction Id="SetCmdLine_OpenAboutPDF" Property="WixShellExecTarget" Value="[ARPREADME]" />
+		<CustomAction Id="OpenAboutFile" BinaryKey="WixCA" DllEntry="WixShellExec" Impersonate="yes" />
+
+		
+		<!--<CustomAction Id="SetCmdLine_TempDirCreate" Property="WixShellExecTarget" Value="mkdir %temp%\SmartProjectEm" />-->
+		<!--<CustomAction Id="SetCmdLine_TempDirCreate" Property="WixShellExecTarget" Value="mkdir C:\Users\UMA\AppData\Local\Temp\SmartProjectEm" />-->
+		<!--<CustomAction Id="SetCmdLine_TempDirCreate" Property="WixShellExecTarget" Value="mkdir C:\temp\SmartProjectEm" />-->
+		<!--<CustomAction Id="CreateTempDir" BinaryKey="WixCA" DllEntry="WixShellExec" Impersonate="yes" />-->
 		
 		<!--<Property Id="WixShellExecTarget" Value="C:\_Freelance\My-AI-AddIns\SmartProjectEm\Setup-Project\!(loc.AboutRTF)" />-->
 		<!--<Property Id="WixShellExecTarget" Value="C:\_Freelance\My-AI-AddIns\SmartProjectEm\AboutFiles\!(loc.AboutPDF)" />-->
 
-		
-		<CustomAction Id="SetOpenFilePath_AboutPDF" Property="WixShellExecTarget" Value="C:\_Freelance\My-AI-AddIns\SmartProjectEm\InvAddIn-Project\!(loc.AboutPDF)" />
-		<CustomAction Id="OpenAboutFile" BinaryKey="WixCA" DllEntry="WixShellExec" Impersonate="yes" />
-	
-		
-		<!--<CustomAction Id="SetBinaryWrite_TargetFileName_1" Property="BINARYWRITE_TARGETFILENAME" Value="[TempFolder]About-SmartProjectEm-ENU.pdf" />-->
-
-
+		<!--PropertyRef Id="WixShellExecBinaryId" />
+		<CustomAction Id="WixShellExecBinary" BinaryKey="WixCA" DllEntry="WixShellExecBinary" Execute="immediate" Return="check" Impersonate="yes" />-->
 
 		
-		<CustomAction Id="SetOpenFilePath_InvApp" Property="WixShellExecTarget" Value="[ADSKINVEXEPATH]" />
-		<CustomAction Id="LaunchInvApp" BinaryKey="WixCA" DllEntry="WixShellExec" Impersonate="yes" />
+		<!--???-->
+		
+		<!--Binary Id="About-SmartProjectEm-RUS.rtf" SourceFile="About-SmartProjectEm-RUS.rtf" />
+		<Property Id="WixShellExecBinaryId" Value="About-SmartProjectEm-RUS.rtf" />
+		<CustomAction Id="OpenAboutFile" BinaryRef="Wix4UtilCA_$(sys.BUILDARCHSHORT)" DllEntry="WixShellExecBinary" Execute="immediate" Return="check" /-->
+		
+		<!--???-->
 
 	</Product>
 </Wix>
