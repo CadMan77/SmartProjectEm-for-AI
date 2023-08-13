@@ -93,13 +93,13 @@
 			<Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOX" Value="1" />
 		</UI>
 		
-		<ComponentGroup Id="ProductComponents" Directory="INSTALLDIR">
+		<!--<ComponentGroup Id="ProductComponents" Directory="INSTALLDIR">-->
 			<!--ComponentGroup Id="ProductComponents" Directory="ADDIN_INSTALL_DIR"-->
 			<!-- TODO: Remove the comments around this Component element and the ComponentRef below in order to add resources to this installer. -->
 			<!-- <Component Id="ProductComponent"> -->
 				<!-- TODO: Insert files, registry keys, and other resources here. -->
 			<!-- </Component> -->
-		</ComponentGroup>
+		<!--</ComponentGroup>-->
 
 		<Property Id="ARPCOMMENTS" Value="!(loc.ARP_COMMENTS)" />
 
@@ -112,11 +112,10 @@
 		<!--Property Id="ARPREADME" Value="%ProgramData%\Autodesk\Inventor Addins\SmartProjectEm\!(loc.AboutPDF)" /-->
 		<SetProperty Id="ARPREADME" Value="[INSTALLDIR]\!(loc.AboutPDF)" After="CostFinalize" />
 
-		
 		<Property Id="ARPPRODUCTICON" Value="AddInIcon" />
-		<Icon Id="AddInIcon" SourceFile=".\SmartProjectEm-Icon.ico" />
+		<Icon Id="AddInIcon" SourceFile="SmartProjectEm-Icon.ico" />
 
-		<WixVariable Id="WixUIBannerBmp" Value=".\SmartProjectEm-Setup-Banner.bmp" />
+		<WixVariable Id="WixUIBannerBmp" Value="SmartProjectEm-Setup-Banner.bmp" />
 
 		<util:CloseApplication Id="CloseInventorExe"
 					   PromptToContinue="yes"
@@ -124,35 +123,15 @@
 					   RebootPrompt="no"
 					   Description="!(loc.InvIsRunningMSG)"/>
 
+		<Binary Id="About_SmartProjectEm_Temp.pdf" SourceFile="$(var.SmartProjectEm.ProjectDir)\!(loc.AboutPDF)" />
+		<Property Id="WixShellExecBinaryId" Value="About_SmartProjectEm_Temp.pdf" />
+		<CustomAction Id="OpenAboutFile_BeforeInstall" BinaryKey="WixCA" DllEntry="WixShellExecBinary" Execute="immediate" Return="check" Impersonate="yes" />
 		
 		<CustomAction Id="SetCmdLine_LaunchInvApp" Property="WixShellExecTarget" Value="[ADSKINVEXEPATH]" />
 		<CustomAction Id="LaunchInvApp" BinaryKey="WixCA" DllEntry="WixShellExec" Impersonate="yes" />
 
-
-		<!--CustomAction Id="SetCmdLine_OpenAboutPDF" Property="WixShellExecTarget" Value="C:\_Freelance\My-AI-AddIns\SmartProjectEm\InvAddIn-Project\!(loc.AboutPDF)" /-->
 		<CustomAction Id="SetCmdLine_OpenAboutPDF" Property="WixShellExecTarget" Value="[ARPREADME]" />
-		<CustomAction Id="OpenAboutFile" BinaryKey="WixCA" DllEntry="WixShellExec" Impersonate="yes" />
-
-		
-		<!--<CustomAction Id="SetCmdLine_TempDirCreate" Property="WixShellExecTarget" Value="mkdir %temp%\SmartProjectEm" />-->
-		<!--<CustomAction Id="SetCmdLine_TempDirCreate" Property="WixShellExecTarget" Value="mkdir C:\Users\UMA\AppData\Local\Temp\SmartProjectEm" />-->
-		<!--<CustomAction Id="SetCmdLine_TempDirCreate" Property="WixShellExecTarget" Value="mkdir C:\temp\SmartProjectEm" />-->
-		<!--<CustomAction Id="CreateTempDir" BinaryKey="WixCA" DllEntry="WixShellExec" Impersonate="yes" />-->
-		
-		<!--<Property Id="WixShellExecTarget" Value="C:\_Freelance\My-AI-AddIns\SmartProjectEm\Setup-Project\!(loc.AboutRTF)" />-->
-		<!--<Property Id="WixShellExecTarget" Value="C:\_Freelance\My-AI-AddIns\SmartProjectEm\AboutFiles\!(loc.AboutPDF)" />-->
-
-		<!--PropertyRef Id="WixShellExecBinaryId" />
-		<CustomAction Id="WixShellExecBinary" BinaryKey="WixCA" DllEntry="WixShellExecBinary" Execute="immediate" Return="check" Impersonate="yes" />-->
-
-		
-		<!--???-->
-		
-		<!--Binary Id="About-SmartProjectEm-RUS.rtf" SourceFile="About-SmartProjectEm-RUS.rtf" />
-		<Property Id="WixShellExecBinaryId" Value="About-SmartProjectEm-RUS.rtf" />
-		<CustomAction Id="OpenAboutFile" BinaryRef="Wix4UtilCA_$(sys.BUILDARCHSHORT)" DllEntry="WixShellExecBinary" Execute="immediate" Return="check" /-->
-		
-		<!--???-->
+		<CustomAction Id="OpenAboutFile_AfterInstall" BinaryKey="WixCA" DllEntry="WixShellExec" Impersonate="yes" />
 
 	</Product>
 </Wix>

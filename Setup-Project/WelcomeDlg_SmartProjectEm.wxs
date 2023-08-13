@@ -15,11 +15,18 @@
         <UI>
             <Dialog Id="WelcomeDlg_SmartProjectEm" Width="370" Height="270" Title="!(loc.WelcomeDlg_Title)">
 
-				<!--<Control Id="AboutButton" Type="PushButton" X="10" Y="243" Width="64" Height="17" Text="!(loc.WixUIAbout)" >
-					<Publish Event="DoAction" Value="SetCmdLine_OpenAboutPDF">1</Publish>
+				<Control Id="About" Type="PushButton" X="10" Y="243" Width="110" Height="17" Text="!(loc.WixUIAbout)" >
+
+					<!--<Publish Event="DoAction" Value="SetCmdLine_OpenAboutPDF">1</Publish>
 					<Publish Event="DoAction" Value="OpenAboutFile">1</Publish>-->
-				<!--<Publish Event="DoAction" Value="SetBinaryWrite_TargetFileName_1">1</Publish>-->
-				<!--</Control>-->
+
+				    <!--<Publish Event="DoAction" Value="SetBinaryWrite_TargetFileName_1">1</Publish>-->
+
+					<!--<Publish Event="DoAction" Value="SetCmdLine_OpenAboutPDF_2">WIXUI_EXITDIALOGOPTIONALCHECKBOX = 1</Publish>-->
+					<!--<Publish Event="DoAction" Value="OpenAboutFile2">1</Publish>-->
+					<Publish Event="DoAction" Value="OpenAboutFile_BeforeInstall">1</Publish>
+
+				</Control>
 				
                 <Control Id="Next" Type="PushButton" X="236" Y="243" Width="56" Height="17" Default="yes" Text="!(loc.WixUINext)" >
                     <Publish Property="WixUI_InstallMode" Value="Update">Installed AND PATCH</Publish>
