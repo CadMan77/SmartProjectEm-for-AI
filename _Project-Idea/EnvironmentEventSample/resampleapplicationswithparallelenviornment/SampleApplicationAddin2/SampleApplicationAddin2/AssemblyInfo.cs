@@ -7,17 +7,17 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 //
-[assembly: AssemblyTitle("SmartProjectEm")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("SampleApplicationAddin2")]
+[assembly: AssemblyDescription("SampleApplicationAddin2")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("'SmartProjectEm' Add-In for Autodesk Inventor 2023-")]
-[assembly: AssemblyCopyright("")]
+[assembly: AssemblyCompany("Autodesk, Inc.")]
+[assembly: AssemblyProduct("Autodesk Inventor")]
+[assembly: AssemblyCopyright("Copyright ?2012 Autodesk, Inc.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("7124776f-8e05-4897-871c-d16b28827f97")]
+[assembly: Guid("37480ed7-64f6-4132-b22a-4b0cc9515396")]
 
 //
 // Version information for an assembly consists of the following four values:
@@ -30,7 +30,7 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Revision and Build Numbers 
 // by using the '*' as shown below:
 
-[assembly: AssemblyVersion("1.0.2.0")]
+[assembly: AssemblyVersion("1.0.*")]
 
 //
 // In order to sign your assembly you must specify a key to use. Refer to the 
@@ -60,4 +60,3 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDelaySign(false)]
 [assembly: AssemblyKeyFile("")]
 [assembly: AssemblyKeyName("")]
-[assembly: ComVisible(true)]

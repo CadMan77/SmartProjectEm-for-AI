@@ -1,0 +1,23 @@
+﻿Option Explicit On
+
+Dim oInvApp = ThisApplication
+' Dim oDoc = ThisDoc.Document
+' If Not (oDoc.DocumentType = DocumentTypeEnum.kPartDocumentObject OR oDoc.DocumentType = DocumentTypeEnum.kPartDocumentObject)
+	' logger.info("NON-model document !!!")
+	' Return
+' End If
+
+' Dim oCD = oDoc.ComponentDefinition
+' Dim oSk = oCD.Sketches(oCD.Sketches.Count) ' : logger.info(oSk.Name)
+' oSk.Edit
+
+Dim oAV = oInvApp.ActiveView
+logger.info(oAV.DisplayMode.ToString)
+
+
+
+Dim envIntName = oInvApp.UserInterfaceManager.ActiveEnvironment.InternalName
+
+If envIntName = "PMxPartSketchEnvironment" OR envIntName = "AMxAssemblySketchEnvironment" Then oInvApp.CommandManager.ControlDefinitions("SketchSliceGraphicsCmd").Execute
+
+' Model Section

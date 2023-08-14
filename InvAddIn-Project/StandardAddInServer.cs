@@ -2,6 +2,7 @@ using Inventor;
 //using Microsoft.Win32;
 using System;
 using System.Runtime.InteropServices;
+using System.Windows.Forms;
 
 namespace SmartProjectEm
 {
@@ -18,6 +19,7 @@ namespace SmartProjectEm
         private Inventor.Application m_inventorApplication;
 
         private Inventor.ApplicationEvents m_appEvents;
+        private Inventor.UserInterfaceEvents m_uiEvents;
 
         public StandardAddInServer()
         {
@@ -38,9 +40,12 @@ namespace SmartProjectEm
             // e.g. event initialization, command creation etc.
 
             m_appEvents = m_inventorApplication.ApplicationEvents;
-
             m_appEvents.OnActivateDocument += new ApplicationEventsSink_OnActivateDocumentEventHandler(ApplicationEvents_OnActivateDocument);
+
+            m_uiEvents = m_inventorApplication.UserInterfaceManager.UserInterfaceEvents;
+            m_uiEvents.OnEnvironmentChange += new UserInterfaceEventsSink_OnEnvironmentChangeEventHandler(UserInterfaceEvents_OnEnvironmentChange);
         }
+
 
         public void Deactivate()
         {
@@ -57,50 +62,57 @@ namespace SmartProjectEm
 
             m_appEvents = null;
 
+            m_uiEvents = null;
+
             GC.Collect();
             GC.WaitForPendingFinalizers();
         }
 
 
 
-
         private void ApplicationEvents_OnActivateDocument(_Document DocumentObject, EventTimingEnum BeforeOrAfter, NameValueMap Context, out HandlingCodeEnum HandlingCode)
-
         {
 
             HandlingCode = Inventor.HandlingCodeEnum.kEventNotHandled;
 
-            //if (BeforeOrAfter != Inventor.EventTimingEnum.kAfter)
-            if (BeforeOrAfter != Inventor.EventTimingEnum.kAfter || (DocumentObject.DocumentType != DocumentTypeEnum.kPartDocumentObject && DocumentObject.DocumentType != DocumentTypeEnum.kAssemblyDocumentObject && DocumentObject.DocumentType != DocumentTypeEnum.kPresentationDocumentObject))
-
+            if (BeforeOrAfter != Inventor.EventTimingEnum.kAfter)
             {
 
-                return;
+                if (DocumentObject.DocumentType == DocumentTypeEnum.kPartDocumentObject || DocumentObject.DocumentType == DocumentTypeEnum.kAssemblyDocumentObject || DocumentObject.DocumentType == DocumentTypeEnum.kPresentationDocumentObject)
 
+                {
+                    //HandlingCode = Inventor.HandlingCodeEnum.kEventHandled;
+
+                    Camera cam = m_inventorApplication.ActiveView.Camera;
+
+                    if (cam.Perspective)
+
+                    {
+                        ControlDefinition ctrlDef = m_inventorApplication.CommandManager.ControlDefinitions["AppViewCubePerspectiveOrthoCmd"];
+                        ctrlDef.Execute();
+                    }
+                }
             }
-
-            HandlingCode = Inventor.HandlingCodeEnum.kEventHandled;
-
-            Camera cam = m_inventorApplication.ActiveView.Camera;
-
-            if (cam.Perspective)
-
-            {
-
-                ControlDefinition controlDef = m_inventorApplication.CommandManager.ControlDefinitions["AppViewCubePerspectiveOrthoCmd"];
-                controlDef.Execute();
-
-            }
-
         }
 
-
+        private void UserInterfaceEvents_OnEnvironmentChange(Inventor.Environment Environment, EnvironmentStateEnum EnvironmentState, EventTimingEnum BeforeOrAfter, NameValueMap Context, out HandlingCodeEnum HandlingCode)
+        {
+            if (BeforeOrAfter == Inventor.EventTimingEnum.kAfter && (Environment.InternalName == "PMxPartSketchEnvironment" || Environment.InternalName == "AMxAssemblySketchEnvironment"))
+            {
+                //MessageBox.Show("!", "Part Sketch Edit");
+                ControlDefinition ctrlDef = m_inventorApplication.CommandManager.ControlDefinitions["SketchSliceGraphicsCmd"];
+                ctrlDef.Execute();
+            }
+            //HandlingCode = HandlingCodeEnum.kEventNotHandled;
+            HandlingCode = HandlingCodeEnum.kEventHandled;
+        }
 
         public void ExecuteCommand(int commandID)
         {
             // Note:this method is now obsolete, you should use the 
             // ControlDefinition functionality for implementing commands.
         }
+
 
         public object Automation
         {

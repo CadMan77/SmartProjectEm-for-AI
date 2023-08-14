@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<assembly xmlns="urn:schemas-microsoft-com:asm.v1" manifestVersion="1.0">
+
+  <assemblyIdentity name="SampleApplicationAddin2" version="1.0.0.0"></assemblyIdentity>
+
+  <clrClass clsid="{0dfaefc2-41c7-4e0d-8db2-039342d9045e}" progid="SampleApplicationAddin2.StandardAddInServer" threadingModel="Both" name="SampleApplicationAddin2.StandardAddInServer" runtimeVersion=""></clrClass>
+
+  <file name="SampleApplicationAddin2.dll" hashalg="SHA1"></file>
+
+</assembly>

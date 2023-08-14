@@ -1,0 +1,5 @@
+If ThisApplication.ActiveDocument.DocumentType = kPartDocumentObject Or ThisApplication.ActiveDocument.DocumentType = kAssemblyDocumentObject Then
+	Dim cam As Camera = ThisApplication.ActiveView.Camera If cam.Perspective = True Then
+		ThisApplication.CommandManager.ControlDefinitions.Item("AppViewCubePerspectiveOrthoCmd").Execute
+	End If
+End If

@@ -1,0 +1,14 @@
+<Addin Type="Standard">
+  <!--Created for Autodesk Inventor Version 18.0-->
+  <ClassId>{aa14577c-3148-409c-8a3f-b89720f32bb3}</ClassId>
+  <ClientId>{aa14577c-3148-409c-8a3f-b89720f32bb3}</ClientId>
+  <DisplayName>SampleApplicationAddin1</DisplayName>
+  <Description>SampleApplicationAddin1</Description>
+  <Assembly>SampleApplicationAddin1.dll</Assembly>
+  <LoadOnStartUp>1</LoadOnStartUp>
+  <UserUnloadable>1</UserUnloadable>
+  <Hidden>0</Hidden>
+  <SupportedSoftwareVersionGreaterThan>17..</SupportedSoftwareVersionGreaterThan>
+  <DataVersion>1</DataVersion>
+  <UserInterfaceVersion>1</UserInterfaceVersion>
+</Addin>
