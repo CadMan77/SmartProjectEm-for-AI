@@ -113,15 +113,8 @@
   <PropertyGroup>
     <PreBuildEvent>
     </PreBuildEvent>
-    <PostBuildEvent>REM WHERE MT.EXE
-REM IF ERRORLEVEL 1 call "$(DevEnvDir)..\..\VC\Auxiliary\Build\vcvarsall.bat" amd64
-REM         mt.exe -manifest "$(ProjectDir)SmartProjectEm.X.manifest" -outputresource:"$(TargetPath)";#2
-REM 			XCopy "$(TargetPath)" "%25AppData%25\Autodesk\ApplicationPlugins\$(TargetName)\" /Y /R
-REM 		    XCopy "$(ProjectDir)Autodesk.SmartProjectEm.Inventor.addin" "%25AppData%25\Autodesk\ApplicationPlugins\$(TargetName)\" /Y /R
-
-"%25WiX%25bin\heat.exe" dir "$(ProjectDir)bin\Release" -sfrag -dr "INSTALLDIR" -srd -cg "CG_AddInFiles" -gg -suid -sreg -var var.SmartProjectEm.TargetDir -out "$(SolutionDir)Setup-Project\Addin-Files(Auto).wxs"
-
-REM "%25WiX%25bin\heat.exe" dir "$(SolutionDir)AboutFiles" -sfrag -dr "INSTALLDIR" -srd -cg "CG_AboutFiles" -gg -suid -sreg -var var.SmartProjectEm.TargetDir -t $(SolutionDir)Setup-Project\PDFonly.xsl -out "$(SolutionDir)SetupProject\About-Files(Auto).wxs"
+    <PostBuildEvent>"%25WiX%25bin\heat.exe" dir "$(ProjectDir)bin\Release" -sfrag -dr "INSTALLDIR" -srd -cg "CG_AddInFiles" -gg -suid -sreg -var var.SmartProjectEm.TargetDir -out "$(SolutionDir)Setup-Project\Addin-Files(Auto).wxs"
+REM "%25WiX%25bin\heat.exe" dir "$(SolutionDir)About-Files" -sfrag -dr "INSTALLDIR" -srd -cg "CG_AboutFiles" -gg -suid -sreg -var var.SmartProjectEm.TargetDir -t $(SolutionDir)Setup-Project\PDFonly.xsl -out "$(SolutionDir)SetupProject\About-Files(Auto).wxs"
 	</PostBuildEvent>
   </PropertyGroup>
 </Project>

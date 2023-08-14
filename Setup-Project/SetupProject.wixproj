@@ -31,7 +31,6 @@
     <EmbeddedResource Include="ru-RU.wxl" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="About-SmartProjectEm-ENU.rtf" />
     <Content Include="EULA-SmartProjectEm-ENU.rtf" />
     <Content Include="EULA-SmartProjectEm-RUS.rtf" />
     <Content Include="SmartProjectEm-Icon.ico" />
