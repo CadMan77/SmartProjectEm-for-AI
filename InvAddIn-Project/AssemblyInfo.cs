@@ -11,7 +11,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("'SmartProjectEm' Add-In for Autodesk Inventor 2023-")]
+[assembly: AssemblyProduct("'SmartProjectEm' Add-In for Autodesk Inventor")]
 [assembly: AssemblyCopyright("")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

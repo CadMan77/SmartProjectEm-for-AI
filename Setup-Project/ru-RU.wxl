@@ -11,7 +11,7 @@
 	<String Id ="InvLaunchOpt"><![CDATA[&Запустить]]> Autodesk Inventor</String>
 	<String Id ="LicenseRTF">EULA-SmartProjectEm-RUS.rtf</String>
 	<String Id ="LocaleId">1049</String>
-	<String Id ="ProductName">Надстройка 'SmartProjectEm' для Autodesk Inventor 2023-</String>
+	<String Id ="ProductName">Надстройка 'SmartProjectEm' для Autodesk Inventor</String>
 	<String Id ="SummaryCodepage">1251</String>
 	<String Id ="WixUIAbout">Открыть 'О SmartProjectEm'</String>
 </WixLocalization>

@@ -18,6 +18,8 @@ namespace SmartProjectEm
         // Inventor application object.
         private Inventor.Application m_inventorApplication;
 
+        private Boolean bForceProjWithOrtho;
+
         private Inventor.ApplicationEvents m_appEvents;
         private Inventor.UserInterfaceEvents m_uiEvents;
 
@@ -35,6 +37,9 @@ namespace SmartProjectEm
 
             // Initialize AddIn members.
             m_inventorApplication = addInSiteObject.Application;
+
+            bForceProjWithOrtho = m_inventorApplication.SoftwareVersion.Major < 28;
+
 
             // TODO: Add ApplicationAddInServer.Activate implementation.
             // e.g. event initialization, command creation etc.
@@ -75,7 +80,7 @@ namespace SmartProjectEm
 
             HandlingCode = Inventor.HandlingCodeEnum.kEventNotHandled;
 
-            if (BeforeOrAfter != Inventor.EventTimingEnum.kAfter)
+            if (bForceProjWithOrtho && BeforeOrAfter != Inventor.EventTimingEnum.kAfter)
             {
 
                 if (DocumentObject.DocumentType == DocumentTypeEnum.kPartDocumentObject || DocumentObject.DocumentType == DocumentTypeEnum.kAssemblyDocumentObject || DocumentObject.DocumentType == DocumentTypeEnum.kPresentationDocumentObject)

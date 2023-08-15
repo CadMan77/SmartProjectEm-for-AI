@@ -12,7 +12,7 @@
 	<String Id ="LicenseRTF">EULA-SmartProjectEm-ENU.rtf</String>
 	<!--<String Id ="LicenseRTF">About-SmartProjectEm-ENU.rtf</String>-->
 	<String Id ="LocaleId">1033</String>
-	<String Id ="ProductName">'SmartProjectEm' Add-In for Autodesk Inventor 2023-</String>
+	<String Id ="ProductName">'SmartProjectEm' Add-In for Autodesk Inventor</String>
 	<String Id ="SummaryCodepage">1252</String>
 	<String Id ="WixUIAbout">Open 'About SmartProjectEm'</String>
 </WixLocalization>
