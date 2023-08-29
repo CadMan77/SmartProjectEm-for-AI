@@ -99,13 +99,15 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="About-SmartProjectEm-ENU.pdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="About-SmartProjectEm-RUS.pdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="Autodesk.SmartProjectEm.Inventor.addin">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Documentation\About-SmartProjectEm-ENU.odt" />
+    <None Include="Documentation\About-SmartProjectEm-ENU.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Documentation\About-SmartProjectEm-RUS.odt" />
+    <None Include="Documentation\About-SmartProjectEm-RUS.pdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
@@ -115,7 +117,7 @@
     </PreBuildEvent>
     <PostBuildEvent>"%25WiX%25bin\heat.exe" dir "$(ProjectDir)bin\Release" -sfrag -dr "INSTALLDIR" -srd -cg "CG_AddInFiles" -gg -suid -sreg -var var.SmartProjectEm.TargetDir -out "$(SolutionDir)Setup-Project\Addin-Files(Auto).wxs"
 
-REM "%25WiX%25bin\heat.exe" dir "$(SolutionDir)About-Files" -sfrag -dr "INSTALLDIR" -srd -cg "CG_AboutFiles" -gg -suid -sreg -var var.SmartProjectEm.TargetDir -t $(SolutionDir)Setup-Project\PDFonly.xsl -out "$(SolutionDir)SetupProject\About-Files(Auto).wxs"
+REM "%25WiX%25bin\heat.exe" dir "$(ProjectDir)Documetation" -sfrag -dr "INSTALLDIR" -srd -cg "CG_AboutFiles" -gg -suid -sreg -var var.SmartProjectEm.TargetDir -t $(SolutionDir)Setup-Project\PDFonly.xsl -out "$(SolutionDir)Setup-Project\About-Files(Auto).wxs"
 	</PostBuildEvent>
   </PropertyGroup>
 </Project>

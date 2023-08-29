@@ -62,9 +62,12 @@
     <Error Text="The WiX Toolset v3.11 build tools must be installed to build this project. To download the WiX Toolset, see https://wixtoolset.org/releases/v3.11/stable" />
   </Target>
   <PropertyGroup>
-    <PostBuildEvent>"%25WiX%25bin\torch.exe" -t language "$(SolutionDir)Setup-Project\bin\Release\en-US\SmartProjectEm.msi" "$(SolutionDir)Setup-Project\bin\Release\ru-RU\SmartProjectEm.msi" -out "$(SolutionDir)Setup-Project\bin\Release\ru-ru.mst" 
-Copy "$(SolutionDir)Setup-Project\bin\Release\en-us\SmartProjectEm.msi" "$(SolutionDir)" 
+    <PostBuildEvent>"%25WiX%25bin\torch.exe" -t language "$(SolutionDir)Setup-Project\bin\Release\en-US\SmartProjectEm.msi" "$(SolutionDir)Setup-Project\bin\Release\ru-RU\SmartProjectEm.msi" -out "$(SolutionDir)Setup-Project\bin\Release\ru-ru.mst"
+
+Copy "$(SolutionDir)Setup-Project\bin\Release\en-us\SmartProjectEm.msi" "$(SolutionDir)"
+
 "C:\Program Files (x86)\Windows Kits\10\bin\10.0.22000.0\x64\WiSubStg.vbs" "$(SolutionDir)SmartProjectEm.msi" "$(SolutionDir)Setup-Project\bin\Release\ru-ru.mst" 1049
+
 "C:\Program Files (x86)\Windows Kits\10\bin\10.0.22000.0\x64\WiLangId.vbs" "$(SolutionDir)SmartProjectEm.msi" Package 1033,1049</PostBuildEvent>
   </PropertyGroup>
   <!--

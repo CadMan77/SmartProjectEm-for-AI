@@ -3,10 +3,8 @@
   <ClassId>{57965d6a-273a-4684-80e2-f46e3229d01f}</ClassId>
   <ClientId>{57965d6a-273a-4684-80e2-f46e3229d01f}</ClientId>
   <DisplayName>SmartProjectEm</DisplayName>
-  <!--<Description Language="1033">Automatically activates 'Perspective with Ortho Faces' projection method for (instead) of 'Perspective'</Description>
-  <Description Language="1049">Автоматически активирует метод проецирования 'Перспективный с ортогональными гранями' для (вместо) 'Перспективный'</Description>-->
-  <Description Language="1033">Automates some popular view manipulations ('Slice Graphics', 'Perspective with Ortho Faces')</Description>
-  <Description Language="1049">Автоматизация некоторых манипуляций с видами ('Разрезать модель', 'Перспективный с ортогональными гранями')</Description>
+  <Description Language="1033">Automates activation of some popular 3D-model view modes ('Perspective with Ortho Faces', 'Slice Graphics')</Description>
+  <Description Language="1049">Авто-включение популярных режимов отображения 3D-моделей ('Перспективный с орто. гранями', 'Разрезать модель')</Description>
   <LoadOnStartUp>1</LoadOnStartUp>
   <!--<SupportedSoftwareVersionLessThan>28..</SupportedSoftwareVersionLessThan>-->
   <SupportedSoftwareVersionGreaterThan>23..</SupportedSoftwareVersionGreaterThan> <!--2020+-->

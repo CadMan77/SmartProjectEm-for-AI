@@ -43,6 +43,7 @@
 				 AllowAdvertise="no">
 			<ComponentGroupRef Id="CG_AddInFiles"/>
 		</Feature>
+		<!--Description="!(loc.MainFtrDescr)"-->
 
 		<!--<Feature Id="AboutFiles"
 				 Title="About Add-In Files"
@@ -51,7 +52,6 @@
 				 AllowAdvertise="no">
 			<ComponentGroupRef Id="CG_AboutFiles"/>
 		</Feature>-->
-		<!--Description="!(loc.MainFtrDescr)"-->
 
 		<Property Id="ADSKINV" Secure="yes">
 			<RegistrySearch Id="RS_AdskInv"
@@ -110,7 +110,7 @@
 		
 		<!--<Property Id="ARPREADME" Value="%ProgramData%\Autodesk\Inventor Addins\SmartProjectEm\About-SmartProjectEm-RUS.pdf" />-->
 		<!--Property Id="ARPREADME" Value="%ProgramData%\Autodesk\Inventor Addins\SmartProjectEm\!(loc.AboutPDF)" /-->
-		<SetProperty Id="ARPREADME" Value="[INSTALLDIR]\!(loc.AboutPDF)" After="CostFinalize" />
+		<SetProperty Id="ARPREADME" Value="[INSTALLDIR]Documentation\!(loc.AboutPDF)" After="CostFinalize" />
 
 		<Property Id="ARPPRODUCTICON" Value="AddInIcon" />
 		<Icon Id="AddInIcon" SourceFile="SmartProjectEm-Icon.ico" />
@@ -123,7 +123,9 @@
 					   RebootPrompt="no"
 					   Description="!(loc.InvIsRunningMSG)"/>
 
-		<Binary Id="About_SmartProjectEm_Temp.pdf" SourceFile="$(var.SmartProjectEm.ProjectDir)\!(loc.AboutPDF)" />
+		<!--<Binary Id="About_SmartProjectEm_Temp.pdf" SourceFile="$(var.SmartProjectEm.ProjectDir)\!(loc.AboutPDF)" />-->
+		<!--<Binary Id="About_SmartProjectEm_Temp.pdf" SourceFile="$(var.SolutionDir)Documentation\!(loc.AboutPDF)" />-->
+		<Binary Id="About_SmartProjectEm_Temp.pdf" SourceFile="$(var.SmartProjectEm.ProjectDir)Documentation\!(loc.AboutPDF)" />
 		<Property Id="WixShellExecBinaryId" Value="About_SmartProjectEm_Temp.pdf" />
 		<CustomAction Id="OpenAboutFile_BeforeInstall" BinaryKey="WixCA" DllEntry="WixShellExecBinary" Execute="immediate" Return="check" Impersonate="yes" />
 		
