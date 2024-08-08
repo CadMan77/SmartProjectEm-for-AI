@@ -1,8 +1,12 @@
 using Inventor;
 //using Microsoft.Win32;
 using System;
+using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using System.Xml;
+using System.Xml.Linq;
 
 namespace SmartProjectEm
 {
@@ -19,6 +23,7 @@ namespace SmartProjectEm
         private Inventor.Application m_inventorApplication;
 
         private Boolean bForceProjWithOrtho;
+        private Boolean bPrintActionsToLog;
 
         private Inventor.ApplicationEvents m_appEvents;
         private Inventor.UserInterfaceEvents m_uiEvents;
@@ -38,9 +43,6 @@ namespace SmartProjectEm
             // Initialize AddIn members.
             m_inventorApplication = addInSiteObject.Application;
 
-            bForceProjWithOrtho = m_inventorApplication.SoftwareVersion.Major < 28;
-
-
             // TODO: Add ApplicationAddInServer.Activate implementation.
             // e.g. event initialization, command creation etc.
 
@@ -49,6 +51,25 @@ namespace SmartProjectEm
 
             m_uiEvents = m_inventorApplication.UserInterfaceManager.UserInterfaceEvents;
             m_uiEvents.OnEnvironmentChange += new UserInterfaceEventsSink_OnEnvironmentChangeEventHandler(UserInterfaceEvents_OnEnvironmentChange);
+
+
+            bForceProjWithOrtho = m_inventorApplication.SoftwareVersion.Major < 28;
+
+
+
+            String sAddinFolderPath = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            String optionsFilename = "SmartProjectEm-Options.xml";
+            String optionsFilePath = sAddinFolderPath + @"\" + optionsFilename;
+
+            XElement logPrint; //= XDocument.Load(optionsFilePath).Root.Element("PrintActionsToLog");
+            try 
+            { 
+                logPrint = XDocument.Load(optionsFilePath).Root.Element("PrintActionsToLog"); 
+                bPrintActionsToLog = bool.Parse(logPrint.Value);
+            }
+            catch { bPrintActionsToLog = false; }
+
+            //MessageBox.Show(bPrintActionsToLog.ToString(), "bPrintActionsToLog-BoolValue");
         }
 
 

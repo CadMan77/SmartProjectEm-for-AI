@@ -1,0 +1,18 @@
+- Отловить создание папки CJSC_VB на отладке (декомпиляции)
+
+- обеспечить совместимость с отладкой Cross-Cutter (Camera System.NullReferenceException
+  HResult=0x80004003 Object reference not set to an instance of an object.)
+
+- Добавить опцию печати действия в iLogic-Log 
+
+- Авто-Вкл 'Orthographic' при Look-At (входе в режим редактирования эскиза)
+	- при входе в режим редакции эскиза и после выполнения команды Вид на объект (https://help.autodesk.com/view/INVNTOR/2024/RUS/?guid=GUID-080E9C6A-CEF2-4B29-B24A-8824453CCA0B) (Page Up).
+
+- Add-In Load "на ходу" (после открытия модели)
+
+- окно пользовательских настроек для управления активностью каждой из функций надстройки.- Убрать необходимость выбора папки InvAddIn-Project при экспорте About в PDF.
+
+### v 1.0.3:
+? Восстановить авто-вкл ProjectWithOrtho (работало в 1.0.0)
+
++ Авто-Вкл 'Slice Graphics' При входе в режим редактирования эскиза (https://help.autodesk.com/view/INVNTOR/2024/RUS/?guid=GUID-F5A5790A-F748-49F0-A81F-BCA56C7C1E89) (F7) при входе в режим редактирования эскиза.

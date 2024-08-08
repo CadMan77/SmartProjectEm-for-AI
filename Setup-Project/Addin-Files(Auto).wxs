@@ -2,17 +2,17 @@
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
     <Fragment>
         <DirectoryRef Id="INSTALLDIR">
-            <Component Id="Autodesk.SmartProjectEm.Inventor.addin" Guid="{ADFA5465-CCD3-4492-86F5-10F21264B765}">
+            <Component Id="Autodesk.SmartProjectEm.Inventor.addin" Guid="{A1D64504-1886-458F-AD0E-CFA21BEC9BCA}">
                 <File Id="Autodesk.SmartProjectEm.Inventor.addin" KeyPath="yes" Source="$(var.SmartProjectEm.TargetDir)\Autodesk.SmartProjectEm.Inventor.addin" />
             </Component>
-            <Component Id="SmartProjectEm.dll" Guid="{73A48502-6D5A-495D-BDE4-80BA66081EF4}">
+            <Component Id="SmartProjectEm.dll" Guid="{AAD8F821-A496-44A7-B506-D04D8D4B424E}">
                 <File Id="SmartProjectEm.dll" KeyPath="yes" Source="$(var.SmartProjectEm.TargetDir)\SmartProjectEm.dll" />
             </Component>
             <Directory Id="Documentation" Name="Documentation">
-                <Component Id="About_SmartProjectEm_ENU.pdf" Guid="{76FD63C8-5AA4-4EB8-B6BE-98314EE88A0D}">
+                <Component Id="About_SmartProjectEm_ENU.pdf" Guid="{FA59F753-8CED-4539-9E7A-8EA8B29CCC9A}">
                     <File Id="About_SmartProjectEm_ENU.pdf" KeyPath="yes" Source="$(var.SmartProjectEm.TargetDir)\Documentation\About-SmartProjectEm-ENU.pdf" />
                 </Component>
-                <Component Id="About_SmartProjectEm_RUS.pdf" Guid="{D967D99B-4DBD-43B4-AEF0-EDF12EDA355C}">
+                <Component Id="About_SmartProjectEm_RUS.pdf" Guid="{BDB1286A-42CD-46DC-82D0-A9EC9272BD8D}">
                     <File Id="About_SmartProjectEm_RUS.pdf" KeyPath="yes" Source="$(var.SmartProjectEm.TargetDir)\Documentation\About-SmartProjectEm-RUS.pdf" />
                 </Component>
             </Directory>

@@ -1,0 +1,1 @@
+msiexec -i SmartProjectEm.msi ProductLanguage="1033"
